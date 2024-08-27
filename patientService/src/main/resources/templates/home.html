@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Home</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+
+            background-color: #343a40;
+            padding: 100px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .nav-left,
+        .navbar .nav-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .nav-left a,
+        .navbar .nav-right a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 16px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar .nav-left a:hover,
+        .navbar .nav-right a:hover {
+            background-color: #495057;
+        }
+
+        .navbar .nav-right a.logout {
+            background-color: #dc3545;
+        }
+
+        .navbar .nav-right a.logout:hover {
+            background-color: #c82333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60vh;
+        }
+
+        .logout {
+            margin:50px 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 4px;
+            background-color: rgb(2,56,67);
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .content button:hover {
+            background-color: #0056b3;
+        }
+
+        .content a {
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<!--<div class="navbar">-->
+<!--    <div class="nav-left">-->
+<!--        <a href="#" th:href="@{/patient/updateDetails/{id}(id=${patient.id})}">Update Details</a>-->
+<!--    </div>-->
+<!--    <div class="nav-right">-->
+<!--        <a href="#" th:href="@{/patient/bookAppointment/{id}(id=${patient.id})}">Book Appointment</a>-->
+<!--        <a href="#" th:href="@{/patient/viewAppointments/{id}(id=${patient.id})}">View Appointments</a>-->
+        <a href="#" th:href="@{http://localhost:9090/home}" class="logout">Logout</a>
+<!--    </div>-->
+<!--</div>-->
+
+<div class="container">
+    <h1>Welcome</span></h1>
+
+<!--    <div class="content">-->
+<!--        <button>-->
+<!--            <a th:href="@{http://localhost:9090/home}">Book Appointment</a>-->
+<!--        </button>-->
+<!--    </div>-->
+</div>
+</body>
+</html>
