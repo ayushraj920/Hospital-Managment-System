@@ -7,8 +7,9 @@ import java.sql.Time;
 import java.util.List;
 
 @Repository
-public interface DoctorAvaibilityRepo extends JpaRepository<DoctorAvailbility,Integer> {
+public interface DoctorAvaibilityRepo extends JpaRepository<DoctorAvailbility, Integer> {
 
-    public List<DoctorAvailbility>  findBySlotsGreaterThan(int slots);
-    public List<DoctorAvailbility>  findById(int id);
+    public List<DoctorAvailbility> findBySlotsGreaterThan(int slots);
+
+    public List<DoctorAvailbility> findById(int id);
 }

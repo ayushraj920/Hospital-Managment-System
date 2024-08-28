@@ -7,14 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomePage {
 
     @GetMapping("/home")
-    public String goToHome()
-    {
-        return  "home";
+    public String goToHome() {
+        return "home";
     }
 
     @GetMapping("/patientHome")
-    public String goToPatientHome()
-    {
-        return  "patientHome";
+    public String goToPatientHome() {
+        return "patientHome";
     }
 }

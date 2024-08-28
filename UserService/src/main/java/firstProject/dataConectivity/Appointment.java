@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.sql.Time;
 
 
 @Entity
@@ -23,25 +22,19 @@ public class Appointment {
     private String appTime;
 
     @ManyToOne
-    @JoinColumn(name = "patient_id", nullable = true) // Allowing null values for foreign key
+    @JoinColumn(name = "patient_id", nullable = true)
     private Patient patient;
 
     @ManyToOne
-    @JoinColumn(name = "doctor_id", nullable = true) // Allowing null values for foreign key
+    @JoinColumn(name = "doctor_id", nullable = true)
     private Doctor doctor;
 
-
-//    private String prescription;
 
     private String problem;
 
 
     @Enumerated(EnumType.STRING)
     private Status status;
-
-    //    @Enumerated(EnumType.STRING)
-//    @Enumerated(EnumType.ORDINAL)
-//    private Priority priority;
 
 
 }

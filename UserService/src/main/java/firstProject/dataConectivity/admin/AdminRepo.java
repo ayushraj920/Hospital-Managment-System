@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface AdminRepo extends JpaRepository<Admin,Integer> {
+public interface AdminRepo extends JpaRepository<Admin, Integer> {
 
     public List<Admin> findByEmail(String email);
 }

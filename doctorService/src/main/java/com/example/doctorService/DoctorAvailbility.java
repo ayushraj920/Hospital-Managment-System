@@ -23,10 +23,9 @@ public class DoctorAvailbility {
 
     public String startTime;
     public String endTime;
-//  public String specialisation;
     public int slots;
 
-    @OneToOne //(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "doctor_id")
     public Doctor doctor;
 
@@ -39,7 +38,7 @@ public class DoctorAvailbility {
     public LocalTime getEndTimeAsLocalTime() {
         String timeWithSeconds = this.endTime + ":00";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        return  LocalTime.parse(timeWithSeconds, formatter);
+        return LocalTime.parse(timeWithSeconds, formatter);
     }
 
 }

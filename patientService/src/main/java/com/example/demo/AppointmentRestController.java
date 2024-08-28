@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+
 @RestController
 @RequestMapping("/patient")
 public class AppointmentRestController {
@@ -18,16 +19,16 @@ public class AppointmentRestController {
 
 
     @GetMapping("/viewAppointmentByDoctor")
-    public List<Appointment> viewAppointmentByDoctor(@RequestParam int id){
+    public List<Appointment> viewAppointmentByDoctor(@RequestParam int id) {
 
-        List<Appointment> appointments=appRepo.findByDoctorId(id);
+        List<Appointment> appointments = appRepo.findByDoctorId(id);
         return appointments;
     }
 
     @GetMapping("/viewAllAppointment")
-    public List<Appointment> viewAllAppointment(){
+    public List<Appointment> viewAllAppointment() {
 
-        List<Appointment> appointments=appRepo.findAll();
+        List<Appointment> appointments = appRepo.findAll();
         return appointments;
     }
 

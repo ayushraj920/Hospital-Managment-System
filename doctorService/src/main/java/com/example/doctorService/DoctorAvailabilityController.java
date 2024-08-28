@@ -30,51 +30,52 @@ public class DoctorAvailabilityController {
     AppointmentRepo appRepo;
 
     @GetMapping("/openRegisterAvailabilityForm")
-    public String openLoginForm(Model model,@RequestParam("doctorId") int doctorId){
+    public String openLoginForm(Model model, @RequestParam("doctorId") int doctorId) {
 
-        DoctorAvailbility doctorAvailbility=new DoctorAvailbility();
+        DoctorAvailbility doctorAvailbility = new DoctorAvailbility();
 
-        RestTemplate restTemplate=new RestTemplate();
-        Doctor doctor = restTemplate.getForObject("http://localhost:9090/doctor/info/"+ doctorId, Doctor.class);
+        RestTemplate restTemplate = new RestTemplate();
+        Doctor doctor = restTemplate.getForObject("http://localhost:9090/doctor/info/" + doctorId, Doctor.class);
 
-        model.addAttribute("doctorAvailbility",doctorAvailbility);
-        model.addAttribute("id",doctorId);
+        model.addAttribute("doctorAvailbility", doctorAvailbility);
+        model.addAttribute("id", doctorId);
         doctorAvailbility.setDoctor(doctor);
         System.out.println(doctorAvailbility);
         return "openRegisterAvailabilityForm";
     }
 
     @PostMapping("/registerAvailability")
-    private String registerAvailability(@ModelAttribute("doctorAvailbility") DoctorAvailbility doctorAvailbility,@RequestParam int id){
+    private String registerAvailability(@ModelAttribute("doctorAvailbility") DoctorAvailbility doctorAvailbility, @RequestParam int id) {
 
 
-        RestTemplate restTemplate=new RestTemplate();
-        Doctor doctor = restTemplate.getForObject("http://localhost:9090/doctor/info/"+ id, Doctor.class);
+        RestTemplate restTemplate = new RestTemplate();
+        Doctor doctor = restTemplate.getForObject("http://localhost:9090/doctor/info/" + id, Doctor.class);
 
-           doctorAvailbility.setDoctor(doctor);
+        doctorAvailbility.setDoctor(doctor);
 
-           DoctorAvailbility savedAvailability = daRepo.save(doctorAvailbility);
-           System.out.println(savedAvailability);
-          return "success";
+        DoctorAvailbility savedAvailability = daRepo.save(doctorAvailbility);
+        System.out.println(savedAvailability);
+        return "success";
     }
 
     @GetMapping("/viewAppointmentByDoctor")
-    public String viewAppointmentByDoctor(Model model,@RequestParam("id") int id){
+    public String viewAppointmentByDoctor(Model model, @RequestParam("id") int id) {
 
 
         String url = "http://localhost:7070/patient/viewAppointmentByDoctor?id=" + id;
 
-        RestTemplate restTemplate=new RestTemplate();
-        // Fetch the list of appointments using getForObject with ParameterizedTypeReference
-        List<Appointment> appointments=restTemplate.exchange(
+        RestTemplate restTemplate = new RestTemplate();
+
+        List<Appointment> appointments = restTemplate.exchange(
                 url,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<Appointment>>() {}
+                new ParameterizedTypeReference<List<Appointment>>() {
+                }
         ).getBody();
 
-        model.addAttribute("appointments",appointments);
-        model.addAttribute("id",id);
+        model.addAttribute("appointments", appointments);
+        model.addAttribute("id", id);
 
 
         return "viewAppointmentByDoctor";

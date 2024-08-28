@@ -13,27 +13,25 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/doctor")
-public class DoctorAvaibilityRest {
-
+public class DoctorAvaibilityRest
+{
     @Autowired
     DoctorAvaibilityRepo daRepo;
 
-    @PostMapping("/bookTiming")  //give a timing from doctor availability and send it to admin
-    public Appointment bookTiming(@RequestBody Appointment appointment){
-
+    @PostMapping("/bookTiming")
+    public Appointment bookTiming(@RequestBody Appointment appointment)
+    {
         List<DoctorAvailbility> availbilities = daRepo.findBySlotsGreaterThan(0);
 
-        if(availbilities.size()==0)
+        if (availbilities.size() == 0)
         {
             return null;
         }
 
-        int size=availbilities.size();
-        int idx=(int)(Math.random()*(size));
+        int size = availbilities.size();
+        int idx = (int)(Math.random() *(size));
 
-        DoctorAvailbility da=availbilities.get(idx);
-
-//      appointment.setAppTime(Time.valueOf("03::00:00"));//setting appointment time
+        DoctorAvailbility da = availbilities.get(idx);
 
         LocalTime startTime = da.getStartTimeAsLocalTime();
         LocalTime endTime = da.getEndTimeAsLocalTime();
@@ -41,23 +39,21 @@ public class DoctorAvaibilityRest {
         System.out.println(startTime);
         System.out.println(endTime);
 
-        String sTime=da.startTime;
+        String sTime = da.startTime;
 
         System.out.println(sTime);
 
-//        LocalTime startTime= da.startTime.toLocalTime(),endTime=da.endTime.toLocalTime();
+        long totalTimeAvailable = Duration.between(startTime, endTime).toMinutes();
 
-        long totalTimeAvailable= Duration.between(startTime ,endTime).toMinutes();
-
-        int timeMinutes= (int) totalTimeAvailable;
-        int timePerSlots= timeMinutes/da.slots;
-        startTime=startTime.plusMinutes(timePerSlots);
-        Time newStartTime=Time.valueOf(startTime);
+        int timeMinutes = (int) totalTimeAvailable;
+        int timePerSlots = timeMinutes / da.slots;
+        startTime = startTime.plusMinutes(timePerSlots);
+        Time newStartTime = Time.valueOf(startTime);
 
         appointment.setAppTime(sTime);
         System.out.println(appointment.getAppTime());
 
-        da.startTime= String.valueOf(startTime);
+        da.startTime = String.valueOf(startTime);
         da.slots--;
         appointment.setDoctor(da.getDoctor());
         appointment.setStatus(Status.SCHEDULED);

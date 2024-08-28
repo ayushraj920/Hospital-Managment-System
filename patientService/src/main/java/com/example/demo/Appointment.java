@@ -1,9 +1,11 @@
 package com.example.demo;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.sql.Time;
 
 
@@ -28,16 +30,10 @@ public class Appointment {
     @JoinColumn(name = "doctor_id", nullable = true)
     private Doctor doctor;
 
-
-//    private String prescription;
-
     private String problem;
 
     @Enumerated(EnumType.STRING)
     private Status status;
-
-//    @Enumerated(EnumType.STRING)
-//      private Priority priority;
 
 
 }
